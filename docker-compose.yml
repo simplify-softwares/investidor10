@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  web:
+    container_name: investidor-10-web
+    image: webdevops/php-apache-dev:8.1
+    working_dir: /var/www/app
+    volumes:
+      - .:/var/www/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/app/public
+      - WEB_DOCUMENT_INDEX=index.php
+      - PHP_MAX_EXECUTION_TIME=86400
+      - PHP_POST_MAX_SIZE=1024M
+      - PHP_UPLOAD_MAX_FILESIZE=1024M
+    ports:
+      - "8080:80"
+    networks:
+      - investidor-10-network
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.3
+    container_name: investidor-10-db
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: investidor10_dev
+    networks:
+      - investidor-10-network
+    volumes:
+      - ./.docker/data:/var/lib_/mysqlz'
+
+  phpMyAdmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: investidor-10-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: investidor-10-db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - investidor-10-network
+
+networks:
+  investidor-10-network:
+    driver: bridge
