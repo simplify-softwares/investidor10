@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Actions\DefaultAction;
+use App\Http\Actions\Noticias\VisualizarNoticiaAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', DefaultAction::class)->name("home");
+Route::get('/visualizar', VisualizarNoticiaAction::class)->name("visualizar.noticia");
