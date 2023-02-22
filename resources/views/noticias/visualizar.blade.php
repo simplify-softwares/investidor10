@@ -27,7 +27,7 @@
             <p class="hora_noticia"><small>Notícia cadastrada em <time>22/02/2023 às 02h33</time></small></p>
         </section>
         <section class="ver-mais">
-            <h3>Leia mais ... </h3>
+            <h3>Veja notícias relacionadas ... </h3>
             <div class="noticias">
                 <div class="noticia">
                     <h2>Titulo noticia</h2>

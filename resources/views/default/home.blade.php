@@ -7,9 +7,7 @@
 @section('title', "")
 
 @section('content')
-
     <div class="content">
-
         <div class="main">
             <div class="noticias">
                 <h3 class="titulo_ultimas_noticias">Últimas notícias</h3>
