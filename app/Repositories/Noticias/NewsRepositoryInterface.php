@@ -15,4 +15,5 @@ interface NewsRepositoryInterface
     public function excluirNoticia($id): bool;
     public function totalNoticias(): int;
     public function totalNoticiasInativas(): int;
+    public function pegarNoticiasPorCategoria(int $category_id, int $id, int $qtde = 3);
 }
