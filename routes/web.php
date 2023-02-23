@@ -18,25 +18,16 @@ use App\Http\Actions\DefaultAction;
 use App\Http\Actions\Noticias\VisualizarNoticiaAction as SiteVisualizarNoticiaAction;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', DefaultAction::class)->name("home");
-Route::get('/visualizar', SiteVisualizarNoticiaAction::class)->name("visualizar.noticia");
+Route::get('/{year}/{month}/{slug_category}/{slug_news}', SiteVisualizarNoticiaAction::class)->name("visualizar.noticia")
+    ->where(['year' => '[0-9]+', 'month' => '[0-9]+']);
+Route::get("/noticias/categoria/{slug_category}")->name('noticias.categorias');
 
 Route::prefix("painel")->group(function () {
     Route::middleware('auth')->group(function () {
 
-        Route::get('/', function(){
-            return                                                   redirect(route("dashboard"));
+        Route::get('/', function () {
+            return redirect(route("dashboard"));
         });
 
         Route::get("/dashboard", DashboardAction::class)->name("dashboard");

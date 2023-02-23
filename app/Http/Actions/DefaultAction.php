@@ -2,16 +2,19 @@
 
 namespace App\Http\Actions;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use App\UseCases\Categorias\ListarCategoriasUseCase;
+use App\UseCases\Noticias\ListarNoticiasUseCase;
 use Illuminate\View\View;
 
-class DefaultAction extends \App\Http\Controllers\Controller
+class DefaultAction extends Controller
 {
 
-    public function __invoke(Request $request, Response $response): View
+    public function __invoke(ListarNoticiasUseCase $listarNoticiasUseCase, ListarCategoriasUseCase $listarCategoriasUseCase): View
     {
-        return view("default.home");
+        $noticias = $listarNoticiasUseCase->handle();
+        $categorias = $listarCategoriasUseCase->handle();
+        return view("default.home", ['noticias' => $noticias, 'categorias' => $categorias]);
     }
 
 }
