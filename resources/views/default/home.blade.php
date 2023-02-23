@@ -12,58 +12,14 @@
             <div class="noticias">
                 <h3 class="titulo_ultimas_noticias">Últimas notícias</h3>
                 <div class="noticias_interna">
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições.</p>
-                        <a href="{{ route("visualizar.noticia") }}" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições.</p>
-                        <a href="#" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições.</p>
-                        <a href="#" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições.</p>
-                        <a href="#" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições. O que temos que ter sempre em mente é que o novo
-                            modelo estrutural aqui preconizado acarreta um processo de reformulação e modernização das
-                            posturas dos órgãos dirigentes com relação às suas atribuições.</p>
-                        <a href="#" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições.</p>
-                        <a href="#" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-                    <div class="noticia">
-                        <h2>Titulo noticia</h2>
-                        <p class="gravata">O que temos que ter sempre em mente é que o novo modelo estrutural aqui
-                            preconizado acarreta um processo de reformulação e modernização das posturas dos órgãos
-                            dirigentes com relação às suas atribuições.</p>
-                        <a href="#" class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
-
+                    @foreach($noticias as $noticia)
+                        <div class="noticia">
+                            <h2>{{ $noticia->title }}</h2>
+                            <p class="gravata">{{ $noticia->tie }}</p>
+                            <a href="{{ route("visualizar.noticia", [$noticia->created_at->format("Y"), $noticia->created_at->format("m"), $noticia->category->slug_name, $noticia->slug_title]) }}"
+                               class="bt_acessar_noticia">Acessar Notícia</a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <aside class="sidebar">
@@ -76,11 +32,9 @@
                 </form>
                 <h3>Filtre por categoria</h3>
                 <ul class="list-categorias">
-                    <li><a href="#">Categoria 1</a></li>
-                    <li><a href="#">Categoria 2</a></li>
-                    <li><a href="#">Categoria 3</a></li>
-                    <li><a href="#">Categoria 4</a></li>
-                    <li><a href="#">Categoria 5</a></li>
+                    @foreach($categorias as $categoria)
+                        <li><a href="{{ route("noticias.categorias", $categoria->slug_name) }}">{{ $categoria->name }}</a></li>
+                    @endforeach
                 </ul>
             </aside>
         </div>
