@@ -1,3 +1,5 @@
+<div id="message-empty"></div>
+
 @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -24,7 +26,11 @@
 @endif
 @if ($errors->any())
     <div class="alert alert-danger">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         Tem algo errado!
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
 @endif

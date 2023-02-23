@@ -11,8 +11,9 @@
                 <thead>
                 <tr>
                     <th class="col-1">ID</th>
-                    <th class="col-5">Título</th>
-                    <th class="col-4">Categoria</th>
+                    <th class="col-4">Título</th>
+                    <th class="col-3">Categoria</th>
+                    <th class="col-2">Status</th>
                     <th class="col-2">Ações</th>
                 </tr>
                 </thead>
@@ -22,10 +23,11 @@
                         <td>{{ $noticia->id }}</td>
                         <td>{{ $noticia->title }}</td>
                         <td>{{ $noticia->category->name }}</td>
+                        <td>{{ $noticia->is_active == 1 ? "Ativo" : "Inativo"}}</td>
                         <td>
                             <a href="{{ route("news.visualizar", $noticia->id) }}" class="btn btn-warning"><i class="bi bi-eye-fill"></i></a>
-                            <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                            <a href="{{ route("news.editar", $noticia->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{ route("news.excluir", $noticia->id) }}" data-origem="listagem" class="btn btn-danger bt_excluir_noticia"><i class="bi bi-trash3-fill"></i></a>
                         </td>
                     </tr>
                 @empty
