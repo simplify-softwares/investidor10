@@ -6,8 +6,8 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="d-2">Visualizando noticia <strong>{{ $noticia->title }}</strong></h2>
-            <a href="{{ route("news.editar", 1) }}" class="btn btn-primary mt-2 mb-3 ms-3 float-end">Editar</a>
-            <a href="#" class="btn btn-danger mt-2 mb-3 float-end">Excluir</a>
+            <a href="{{ route("news.editar", $noticia->id) }}" class="btn btn-primary mt-2 mb-3 ms-3 float-end">Editar</a>
+            <a href="{{ route("news.excluir", $noticia->id) }}" data-origem="visualizar" class="btn btn-danger mt-2 mb-3 float-end bt_excluir_noticia">Excluir</a>
             <a href="{{ route("news.listar") }}" class="btn btn-light">< Voltar</a>
             <table class="table table-striped table-hover mt-4">
                 <tr>
@@ -39,8 +39,8 @@
                     <td>{{ $noticia->updated_at->format("d/m/Y H:i:s") }}</td>
                 </tr>
             </table>
-            <a href="{{ route("news.editar", 1) }}" class="btn btn-primary mt-2 mb-3 ms-3 float-end">Editar</a>
-            <a href="#" class="btn btn-danger mt-2 mb-3 float-end">Excluir</a>
+            <a href="{{ route("news.editar", $noticia->id) }}" class="btn btn-primary mt-2 mb-3 ms-3 float-end">Editar</a>
+            <a href="{{ route("news.excluir", $noticia->id) }}" data-origem="visualizar" class="btn btn-danger mt-2 mb-3 float-end bt_excluir_noticia">Excluir</a>
             <a href="{{ route("news.listar") }}" class="btn btn-light">< Voltar</a>
         </div>
     </div>

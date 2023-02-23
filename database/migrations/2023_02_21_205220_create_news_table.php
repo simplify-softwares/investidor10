@@ -18,7 +18,9 @@ return new class extends Migration
             $table->foreignId("category_id")->constrained("category");
             $table->mediumText("content");
             $table->string('slug_title');
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,4 +16,38 @@ class NewsRepository implements NewsRepositoryInterface
     {
         return News::paginate();
     }
+
+    public function salvar(array $noticia): bool
+    {
+        $noticia = new News($noticia);
+        return $noticia->save();
+    }
+
+    public function atualizar(array $noticiaArray, int $id): bool
+    {
+        $noticia = News::find($id);
+        $noticia->fill($noticiaArray);
+        return $noticia->save();
+    }
+
+    public function pegarNoticiaPorSlug(string $slug): ?News
+    {
+        return News::where(['slug_title' => $slug])?->first();
+    }
+
+    public function excluirNoticia($id): bool
+    {
+        $noticia = News::find($id);
+        return $noticia->delete();
+    }
+
+    public function totalNoticias(): int
+    {
+        return News::count();
+    }
+
+    public function totalNoticiasInativas(): int
+    {
+        return News::where(['is_active' => 0])->withTrashed()->count();
+    }
 }
