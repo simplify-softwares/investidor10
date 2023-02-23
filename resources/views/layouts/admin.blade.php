@@ -40,6 +40,7 @@
     </nav>
 
     <div class="container mt-5">
+        @include("_partials.messages")
         @yield('content')
     </div>
 

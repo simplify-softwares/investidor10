@@ -1,11 +1,11 @@
 @extends("layouts.admin")
 
-@section('title', 'Titulo da noticia aqui - ')
+@section('title', $noticia->title . ' - ')
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h2 class="d-2">Visualizando noticia <strong>Titulo da noticia aqui</strong></h2>
+            <h2 class="d-2">Visualizando noticia <strong>{{ $noticia->title }}</strong></h2>
             <a href="{{ route("news.editar", 1) }}" class="btn btn-primary mt-2 mb-3 ms-3 float-end">Editar</a>
             <a href="#" class="btn btn-danger mt-2 mb-3 float-end">Excluir</a>
             <a href="{{ route("news.listar") }}" class="btn btn-light">< Voltar</a>
@@ -16,27 +16,27 @@
                 </tr>
                 <tr>
                     <th>Título</th>
-                    <td>fadf adf ad fad f</td>
+                    <td>{{ $noticia->title }}</td>
                 </tr>
                 <tr>
                     <th>Gravata</th>
-                    <td>fdafadfadfadf adf ad </td>
+                    <td>{{ $noticia->tie }}</td>
                 </tr>
                 <tr>
                     <th>Conteúdo</th>
-                    <td>fadfad fadf ad fad fad</td>
+                    <td>{!! nl2br($noticia->content) !!}</td>
                 </tr>
                 <tr>
                     <th>Slug</th>
-                    <td>fad-fad-fadf-adf-fadf</td>
+                    <td>{{ $noticia->slug_title }}</td>
                 </tr>
                 <tr>
                     <th>Cadastrado em</th>
-                    <td>22/02/2023 as 18h34</td>
+                    <td>{{ $noticia->created_at->format("d/m/Y H:i:s") }}</td>
                 </tr>
                 <tr>
                     <th>Última alteração em</th>
-                    <td>22/02/2023 as 18h34</td>
+                    <td>{{ $noticia->updated_at->format("d/m/Y H:i:s") }}</td>
                 </tr>
             </table>
             <a href="{{ route("news.editar", 1) }}" class="btn btn-primary mt-2 mb-3 ms-3 float-end">Editar</a>
