@@ -3,6 +3,7 @@
 namespace App\Repositories\Noticias;
 
 use App\Models\News;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsRepository implements NewsRepositoryInterface
@@ -48,6 +49,22 @@ class NewsRepository implements NewsRepositoryInterface
 
     public function totalNoticiasInativas(): int
     {
-        return News::where(['is_active' => 0])->withTrashed()->count();
+        return News::where(['is_active' => 0])
+            ->withTrashed()
+            ->count();
+    }
+
+    public function pegarNoticiasPorCategoria(int $category_id, int $id_noticia = null, int $qtde = 3): Collection
+    {
+        $query =  News::where(['is_active' => 1])
+            ->where(['category_id' => $category_id]);
+
+        if(!is_null($id_noticia)) {
+           $query->where('id', '!=', $id_noticia);
+        };
+
+        return $query->inRandomOrder()
+            ->limit($qtde)
+            ->get();
     }
 }
