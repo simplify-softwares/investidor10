@@ -33,7 +33,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="" class="nav-link">Sair</a>
+                        <a href="{{ route('logout') }}" class="nav-link">Sair</a>
                     </li>
                 </ul>
             </div>
