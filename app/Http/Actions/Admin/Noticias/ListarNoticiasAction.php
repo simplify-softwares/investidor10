@@ -3,11 +3,14 @@
 namespace App\Http\Actions\Admin\Noticias;
 
 use App\Http\Controllers\Controller;
+use App\UseCases\Noticias\ListarNoticiasUseCase;
+use Illuminate\Http\Request;
 
 class ListarNoticiasAction extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request, ListarNoticiasUseCase $listarNoticiasUseCase)
     {
-        return view("admin.noticias.listar");
+        $noticias = $listarNoticiasUseCase->handle();
+        return view("admin.noticias.listar", ['noticias' => $noticias]);
     }
 }

@@ -32,7 +32,7 @@ Route::prefix("painel")->group(function () {
         Route::match(['GET', 'POST'], "/cadastrar", CadastrarNoticiaAction::class)->name('news.cadastrar');
         Route::match(['GET', 'POST'], "/editar/{noticia}", CadastrarNoticiaAction::class)->name('news.editar');
 
-        Route::get("/visualizar/{noticia}", VisualizarNoticiaAction::class)->name("news.visualizar");
+        Route::get("/visualizar/{id}", VisualizarNoticiaAction::class)->name("news.visualizar");
 
     });
 });

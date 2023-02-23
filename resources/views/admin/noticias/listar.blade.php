@@ -17,48 +17,30 @@
                 </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                <tr>
-                    <td>1</td>
-                    <td>fadf ad fad</td>
-                    <td>Categoria 1</td>
-                    <td>
-                        <a href="{{ route("news.visualizar", 1) }}" class="btn btn-warning"><i class="bi bi-eye-fill"></i></a>
-                        <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <a href="" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>fadf ad fad</td>
-                    <td>Categoria 1</td>
-                    <td>
-                        <a href="" class="btn btn-warning"><i class="bi bi-eye-fill"></i></a>
-                        <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <a href="" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>fadf ad fad</td>
-                    <td>Categoria 1</td>
-                    <td>
-                        <a href="" class="btn btn-warning"><i class="bi bi-eye-fill"></i></a>
-                        <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <a href="" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>fadf ad fad</td>
-                    <td>Categoria 1</td>
-                    <td>
-                        <a href="" class="btn btn-warning"><i class="bi bi-eye-fill"></i></a>
-                        <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <a href="" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
-                    </td>
-                </tr>
+                @forelse($noticias as $noticia)
+                    <tr>
+                        <td>{{ $noticia->id }}</td>
+                        <td>{{ $noticia->title }}</td>
+                        <td>{{ $noticia->category->name }}</td>
+                        <td>
+                            <a href="{{ route("news.visualizar", $noticia->id) }}" class="btn btn-warning"><i class="bi bi-eye-fill"></i></a>
+                            <a href="" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">Nenhuma notícia cadastrada!</td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
+
+            @if (count($noticias) > 0)
+                <hr>
+                {{ $noticias->onEachSide(3)->links() }}
+            @endif
+
         </div>
     </div>
 @endsection
