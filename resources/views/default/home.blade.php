@@ -10,30 +10,36 @@
     <div class="content">
         <div class="main">
             <div class="noticias">
-                <h3 class="titulo_ultimas_noticias">Últimas notícias</h3>
+                <h3 class="titulo_ultimas_noticias">Últimas notícias
+                    @if($busca)
+                        <small> - buscando por <strong>{{ $busca }}</strong></small>
+                    @endif
+                </h3>
                 <div class="noticias_interna">
                     @foreach($noticias as $noticia)
-                        <div class="noticia">
-                            <h2>{{ $noticia->title }}</h2>
-                            <p class="gravata">{{ $noticia->tie }}</p>
-                            <a href="{{ route("visualizar.noticia", [$noticia->created_at->format("Y"), $noticia->created_at->format("m"), $noticia->category->slug_name, $noticia->slug_title]) }}"
-                               class="bt_acessar_noticia">Acessar Notícia</a>
-                        </div>
+                        @include("noticias._noticia")
                     @endforeach
                 </div>
+                @if(!empty($noticias))
+                    {{ $noticias->links() }}
+                @endif
             </div>
             <aside class="sidebar">
-                <form action="/search" method="get" id="form_busca">
+                <form action="/" method="get" id="form_busca">
+                    <input type="hidden" value="{{ $categoria }}" name="categoria" id="categoria">
                     <label for="search">Realize sua busca no campo abaixo</label>
                     <div class="grupo-campo-botao">
-                        <input type="search" name="q" id="search" placeholder="Busque sua notícia aqui!">
-                        <button type="submit">buscar</button>
+                        <input type="search" name="busca" value="{{ $busca }}" id="busca"
+                               placeholder="Busque sua notícia aqui!">
+                        <button type="button" id="bt_buscar">buscar</button>
                     </div>
                 </form>
                 <h3>Filtre por categoria</h3>
                 <ul class="list-categorias">
-                    @foreach($categorias as $categoria)
-                        <li><a href="{{ route("noticias.categorias", $categoria->slug_name) }}">{{ $categoria->name }}</a></li>
+                    @foreach($categorias as $category)
+                        <li>
+                            <a {{ $categoria == $category->id ? "class=categoria_ativa" : ""}} href="?categoria={{ $category->id }}">{{ $category->name }} {{ $categoria == $category->id ? "<" : ""}}</a>
+                        </li>
                     @endforeach
                 </ul>
             </aside>

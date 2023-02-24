@@ -122,3 +122,29 @@ footer p, footer a {
 .noticias .noticia .bt_acessar_noticia:hover {
     color: red;
 }
+
+.noticia small {
+    color: #cc253e;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination li {
+    font-family: 'Roboto', sans-serif;
+}
+
+.pagination li a, .pagination li span {
+    padding: 20px;
+    background-color: darkcyan;
+    color: #fff;
+}
+
+.pagination li span {
+    padding: 20px;
+    background-color: darkcyan;
+    opacity: .3;
+}

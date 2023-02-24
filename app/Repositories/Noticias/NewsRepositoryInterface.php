@@ -3,12 +3,12 @@
 namespace App\Repositories\Noticias;
 
 use App\Models\News;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 interface NewsRepositoryInterface
 {
     public function pegarNoticiaPorId(int $id): ?News;
-    public function listarTodas(): ?LengthAwarePaginator;
+    public function listarTodas(string $busca = null, int $category = null): ?Builder;
     public function salvar(array $noticia): bool;
     public function atualizar(array $noticia, int $id): bool;
     public function pegarNoticiaPorSlug(string $slug): ?News;

@@ -4,7 +4,7 @@ namespace App\Repositories\Noticias;
 
 use App\Models\News;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class NewsRepository implements NewsRepositoryInterface
 {
@@ -13,9 +13,22 @@ class NewsRepository implements NewsRepositoryInterface
         return News::find($id);
     }
 
-    public function listarTodas(): ?LengthAwarePaginator
+    public function listarTodas(string $busca = null, int $category = null): ?Builder
     {
-        return News::paginate();
+        $query = News::select()->orderBy("created_at", "desc");
+
+        if (!empty($busca)) {
+            $query->where('title', 'like', "%$busca%")
+                ->orWhere('content', 'like', "%$busca%")
+                ->orWhere('tie', 'like', "%$busca%");
+        }
+
+        if (!is_null($category)) {
+            $query->where(['category_id' => $category]);
+        }
+
+        return $query;
+
     }
 
     public function salvar(array $noticia): bool

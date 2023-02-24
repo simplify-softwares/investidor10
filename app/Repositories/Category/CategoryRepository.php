@@ -9,7 +9,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function listarTodas(): Collection
     {
-        return Category::all();
+        return Category::orderBy("name")->get();
     }
 
     public function totalCategorias(): int
