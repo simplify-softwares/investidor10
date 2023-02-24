@@ -3,7 +3,7 @@
 namespace App\UseCases\Noticias;
 
 use App\Repositories\Noticias\NewsRepositoryInterface;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListarNoticiasUseCase
 {
@@ -14,8 +14,8 @@ class ListarNoticiasUseCase
         $this->newsRepository = $newsRepository;
     }
 
-    public function handle(): LengthAwarePaginator
+    public function handle(string $busca = null, int $category = null): Builder
     {
-        return $this->newsRepository->listarTodas();
+        return $this->newsRepository->listarTodas($busca, $category);
     }
 }

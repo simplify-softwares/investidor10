@@ -22,15 +22,10 @@
                 </small></p>
         </section>
         <section class="ver-mais">
-            <h3>Veja notícias relacionadas ... </h3>
+            <h3>Veja mais notícias sobre {{ $noticia->category->name }} </h3>
             <div class="noticias">
-                @foreach($noticias_relacionadas as $noticia_relacionada)
-                    <div class="noticia">
-                        <h2>{{ $noticia_relacionada->title }}</h2>
-                        <p class="gravata">{{ $noticia_relacionada->title }}</p>
-                        <a href="{{ route("visualizar.noticia", [$noticia_relacionada->created_at->format("Y"), $noticia_relacionada->created_at->format("m"), $noticia_relacionada->category->slug_name, $noticia_relacionada->slug_title]) }}"
-                           class="bt_acessar_noticia">Acessar Notícia</a>
-                    </div>
+                @foreach($noticias as $noticia)
+                    @include("noticias._noticia")
                 @endforeach
             </div>
         </section>

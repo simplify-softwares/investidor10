@@ -29,6 +29,8 @@
     <footer>
         <p>Desenvolvido por <a href="https://linkedin.com/in/gilsonreis"><strong>Gilson Reis</strong></a></p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="/javascript/script.js" type="text/javascript"></script>
 
 </body>
 </html>

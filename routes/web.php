@@ -4,6 +4,7 @@ use App\Http\Actions\Admin\DashboardAction;
 use App\Http\Actions\Admin\Login\AutenticarLoginAction;
 use App\Http\Actions\Admin\Login\LogoutAction;
 use App\Http\Actions\Admin\Login\TelaLoginAction;
+use App\Http\Actions\Noticias\NoticiasPorCategoriaAction;
 use App\Http\Actions\Admin\Noticias\{
     AtualizarNoticiaAction,
     CadastrarNoticiaAction,
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', DefaultAction::class)->name("home");
 Route::get('/{year}/{month}/{slug_category}/{slug_news}', SiteVisualizarNoticiaAction::class)->name("visualizar.noticia")
     ->where(['year' => '[0-9]+', 'month' => '[0-9]+']);
-Route::get("/noticias/categoria/{slug_category}")->name('noticias.categorias');
+Route::get("/noticias/categoria/{slug_category}", NoticiasPorCategoriaAction::class)->name('noticias.categorias');
 
 Route::prefix("painel")->group(function () {
     Route::middleware('auth')->group(function () {

@@ -15,7 +15,7 @@ class VisualizarNoticiaAction extends \App\Http\Controllers\Controller
     {
         $noticia = $pegarNoticiaPorSlugUseCase->handle($slug_news);
         $noticiasRelacionadas = $pegar3NoticiasPorCategoriaUseCase->handle($noticia->category_id, $noticia->id);
-        return view("noticias.visualizar", ['noticia' => $noticia, 'noticias_relacionadas' => $noticiasRelacionadas]);
+        return view("noticias.visualizar", ['noticia' => $noticia, 'noticias' => $noticiasRelacionadas]);
     }
 
 }

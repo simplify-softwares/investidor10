@@ -10,7 +10,7 @@ class ListarNoticiasAction extends Controller
 {
     public function __invoke(Request $request, ListarNoticiasUseCase $listarNoticiasUseCase)
     {
-        $noticias = $listarNoticiasUseCase->handle();
+        $noticias = $listarNoticiasUseCase->handle()->paginate();
         return view("admin.noticias.listar", ['noticias' => $noticias]);
     }
 }
